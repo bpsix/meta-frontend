@@ -6,7 +6,6 @@ import Account from "./components/account/account";
 import { OpenOrderWrapper } from "./components/order/OpenOrderWrapper";
 import { OpenOrder } from "./components/order/OpenOrder";
 import { ClosedOrderWrapper } from "./components/order/ClosedOrderWrapper";
-import { ClosedOrder } from "./components/order/ClosedOrder";
 
 export default function App() {
   console.log(`Running  in ${import.meta.env.MODE}`);
@@ -91,20 +90,7 @@ export default function App() {
         profit={account.profit}
         server={account.server}
       />
-      <ClosedOrderWrapper>
-        {closedOrders.map((order, idx) => (
-          <ClosedOrder
-            order_type={order.order_type}
-            comment={order.comment}
-            profit={order.profit}
-            symbol={order.symbol}
-            ticket={order.ticket}
-            time={order.time}
-            volume={order.volume}
-            key={idx}
-          />
-        ))}
-      </ClosedOrderWrapper>
+      <ClosedOrderWrapper closedOrders={closedOrders} />
       <OpenOrderWrapper>
         {openOrders.map((order, idx) => (
           <OpenOrder
