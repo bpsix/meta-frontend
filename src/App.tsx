@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { AccountType, OpenOrderType, type ClosedOrderType } from "./lib/types";
-import {
-  ClosedOrder,
-  ClosedOrderWrapper,
-  OpenOrder,
-  OpenOrderWrapper,
-} from "./components/order/order";
+
 import { getAccount, getClosedOrders, getOpenOrders } from "./lib/action";
 import Account from "./components/account/account";
+import { OpenOrderWrapper } from "./components/order/OpenOrderWrapper";
+import { OpenOrder } from "./components/order/OpenOrder";
+import { ClosedOrderWrapper } from "./components/order/ClosedOrderWrapper";
+import { ClosedOrder } from "./components/order/ClosedOrder";
 
 export default function App() {
   console.log(`Running  in ${import.meta.env.MODE}`);
