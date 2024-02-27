@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AccountType, OpenOrderType, type ClosedOrderType } from "./lib/types";
 
-import { getAccount, getClosedOrders, getOpenOrders } from "./lib/action";
+import { getAccount, getOpenOrders } from "./lib/action";
 import Account from "./components/account/account";
 import { OpenOrderWrapper } from "./components/order/OpenOrderWrapper";
 import { OpenOrder } from "./components/order/OpenOrder";
@@ -10,17 +10,6 @@ import { ClosedOrder } from "./components/order/ClosedOrder";
 
 export default function App() {
   console.log(`Running  in ${import.meta.env.MODE}`);
-  const [closedOrders, setClosedOrders] = useState<ClosedOrderType[]>([
-    {
-      comment: "?",
-      order_type: -1,
-      profit: -1,
-      symbol: "?",
-      ticket: -1,
-      time: 0,
-      volume: -1,
-    },
-  ]);
   const [account, setAccount] = useState<AccountType>({
     balance: 0,
     equity: 0,
@@ -42,19 +31,6 @@ export default function App() {
       volume_current: -1,
     },
   ]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getClosedOrders();
-        setClosedOrders(data);
-      } catch (error) {
-        console.log(error);
-        throw error;
-      }
-    };
-    fetchData();
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -91,20 +67,7 @@ export default function App() {
         profit={account.profit}
         server={account.server}
       />
-      <ClosedOrderWrapper>
-        {closedOrders.map((order, idx) => (
-          <ClosedOrder
-            order_type={order.order_type}
-            comment={order.comment}
-            profit={order.profit}
-            symbol={order.symbol}
-            ticket={order.ticket}
-            time={order.time}
-            volume={order.volume}
-            key={idx}
-          />
-        ))}
-      </ClosedOrderWrapper>
+      <ClosedOrderWrapper />
       <OpenOrderWrapper>
         {openOrders.map((order, idx) => (
           <OpenOrder
