@@ -1,13 +1,7 @@
-import AccountWrapper from "./components/account/account";
-import ClosedOrderWrapper from "./components/order/ClosedOrderWrapper";
-import OpenOrderWrapper from "./components/order/OpenOrderWrapper";
+import Layout from "./components/layout/Layout";
 
 export default function App() {
   return (
-    <div>
-      <AccountWrapper />
-      <OpenOrderWrapper />
-      <ClosedOrderWrapper />
-    </div>
+    <Layout />
   );
 }

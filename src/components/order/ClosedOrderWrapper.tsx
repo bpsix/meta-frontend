@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { ClosedOrderType } from "../../lib/types";
 import { getClosedOrders } from "../../lib/action";
-
-import styles from "./order.module.css";
 import { getFormattedCurrency } from "../../lib/util";
+import styles from "./order.module.css";
 
 export default function ClosedOrderWrapper() {
   const [orders, setOrders] = useState<ClosedOrderType[]>([
@@ -29,10 +28,9 @@ export default function ClosedOrderWrapper() {
     fetchData();
   }, []);
   return (
-    <div>
-      <h1>Order History:</h1>
-      <hr />
-      <table>
+    <div className={styles.tableWrapper}>
+      <h1 className={styles.tableLabel}>Order History</h1>
+      <table className={styles.table}>
         <thead>
           <tr>
             <th className={styles.th}>Transaction Date</th>
@@ -47,14 +45,14 @@ export default function ClosedOrderWrapper() {
         <tbody>
           {orders.map((order) => {
             return (
-              <tr>
-                <td>{new Date(order.time).toLocaleDateString()}</td>
-                <td>{order.ticket}</td>
-                <td>{order.symbol || "No symbol"}</td>
-                <td>{order.volume}</td>
-                <td>{order.comment || "No comment"}</td>
-                <td>{order.order_type}</td>
-                <td>{getFormattedCurrency(order.profit)}</td>
+              <tr className={styles.tr}>
+                <td className={styles.td}>{new Date(order.time).toLocaleDateString()}</td>
+                <td className={styles.td}>{order.ticket}</td>
+                <td className={styles.td}>{order.symbol || "No symbol"}</td>
+                <td className={styles.td}>{order.volume}</td>
+                <td className={styles.td}>{order.comment || "No comment"}</td>
+                <td className={styles.td}>{order.order_type}</td>
+                <td className={styles.td}>{getFormattedCurrency(order.profit)}</td>
               </tr>
             );
           })}

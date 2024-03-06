@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import styles from "./order.module.css";
 import { OpenOrderType } from "../../lib/types";
 import { getOpenOrders } from "../../lib/action";
+import styles from "./order.module.css";
 
 export default function OpenOrderWrapper() {
   const [orders, setOrders] = useState<OpenOrderType[]>([
@@ -31,11 +31,10 @@ export default function OpenOrderWrapper() {
     fetchData();
   }, []);
   return (
-    <div>
-      <h1>Open Orders:</h1>
-      <hr />
-      <table>
-        <thead>
+    <div className={styles.tableWrapper}>
+      <h1 className={styles.tableLabel}>Open Orders</h1>
+      <table className={styles.table}>
+        <thead className={styles.thead}>
           <tr>
             <th className={styles.th}>Opened At</th>
             <th className={styles.th}>Ticket</th>
@@ -52,23 +51,22 @@ export default function OpenOrderWrapper() {
         <tbody>
           {orders.map((order) => {
             return (
-              <tr>
-                <td>{new Date(order.time_setup).toLocaleDateString()}</td>
-                <td>{order.ticket}</td>
-                <td>{order.symbol}</td>
-                <td>{order.volume_current}</td>
-                <td>{order.comment || "No comment"}</td>
-                <td>{order.order_type}</td>
-                <td>{order.price_open}</td>
-                <td>{order.price_current}</td>
-                <td>{order.stop_loss}</td>
-                <td>{order.take_profit}</td>
+              <tr className={styles.tr}>
+                <td className={styles.td}>{new Date(order.time_setup).toLocaleDateString()}</td>
+                <td className={styles.td}>{order.ticket}</td>
+                <td className={styles.td}>{order.symbol}</td>
+                <td className={styles.td}>{order.volume_current}</td>
+                <td className={styles.td}>{order.comment || "No comment"}</td>
+                <td className={styles.td}>{order.order_type}</td>
+                <td className={styles.td}>{order.price_open}</td>
+                <td className={styles.td}>{order.price_current}</td>
+                <td className={styles.td}>{order.stop_loss}</td>
+                <td className={styles.td}>{order.take_profit}</td>
               </tr>
             );
           })}
         </tbody>
       </table>
-      <hr />
     </div>
   );
 }

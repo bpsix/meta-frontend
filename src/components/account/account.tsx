@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { AccountType } from "../../lib/types";
 import { getFormattedCurrency } from "../../lib/util";
-
-import styles from "./acc.module.css";
 import { getAccount } from "../../lib/action";
+import styles from "./account.module.css";
 
 export default function AccountWrapper() {
   const [account, setAccount] = useState<AccountType>({
@@ -25,12 +24,16 @@ export default function AccountWrapper() {
     fetchData();
   }, []);
   return (
-    <div className={styles.container}>
-      <div>Login({account.login})</div>
-      <div>Balance({getFormattedCurrency(account.balance)})</div>
-      <div>Equity({getFormattedCurrency(account.equity)})</div>
-      <div>Profit({getFormattedCurrency(account.profit)})</div>
-      <div>Server({account.server})</div>
+    <div className={styles.accountWrapper}>
+      <p className={styles.accountItem}>Login</p> <p>{account.login}</p>
+      <hr />
+      <p className={styles.accountItem}>Server</p> <p>{account.server}</p>
+      <hr />
+      <p className={styles.accountItem}>Profit</p> <p>{getFormattedCurrency(account.profit)}</p>
+      <hr />
+      <p className={styles.accountItem}>Equity</p> <p>{getFormattedCurrency(account.equity)}</p>
+      <hr />
+      <p className={styles.accountItem}>Balance</p> <p>{getFormattedCurrency(account.balance)}</p>
     </div>
   );
 }

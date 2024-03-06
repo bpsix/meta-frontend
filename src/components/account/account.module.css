@@ -1,0 +1,12 @@
+.account-wrapper {
+    background-color: #0F4C75;
+    padding: 5px;
+    border-radius: 15px;
+    color: #ddd;
+}
+
+.account-item {
+    padding: 25px;
+    font-size: 1.125rem;
+    text-align: center;
+}
